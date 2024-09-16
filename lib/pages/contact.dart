@@ -13,7 +13,7 @@ class contactpage extends StatefulWidget{
 class _contactpageState extends State<contactpage> {
   List<ContactModel> contacts=[
     ContactModel(name: 'Tanvi', bio: 'Hey there i am using whatsapp',id: 1),
-    ContactModel(name: 'mummyyy', bio: 'Hey there i am using whatsapp',id: 2)
+    ContactModel(name: 'Personal', bio: 'Hey there i am using whatsapp',id: 2)
   ];
   @override
   Widget build(BuildContext context){

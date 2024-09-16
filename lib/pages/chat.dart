@@ -4,8 +4,9 @@ import 'package:disapp/pages/contact.dart';
 import 'package:flutter/material.dart';
 
 class chatpage extends StatefulWidget {
-  const chatpage({Key? key, required this.chatmodel}) : super(key: key);
-  final List<ChatModel> chatmodel;
+  const chatpage({Key? key,required this.chatmodels, required this.sourchat}) : super(key: key);
+  final List<ChatModel> chatmodels;
+  final ChatModel sourchat;
 
   @override
   State<chatpage> createState() => _chatpageState();
@@ -22,9 +23,12 @@ class _chatpageState extends State<chatpage> {
         child: Icon(Icons.chat),
       ),
       body: ListView.builder(
-        itemCount: widget.chatmodel.length,
+        itemCount: widget.chatmodels.length,
         itemBuilder: (context, index) {
-          return customcardd(chatmodel: widget.chatmodel[index]);
+          return  CustomCard(
+          chatModel: widget.chatmodels[index],
+          sourchat: widget.sourchat,
+        );
         },
       ),
     );

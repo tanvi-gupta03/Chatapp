@@ -12,9 +12,14 @@ class loginscreenpage extends StatefulWidget {
 }
 
 class _loginscreenpageState extends State<loginscreenpage> {
+  late ChatModel sourcechat;
   List<ChatModel> chatss = [
-    ChatModel(name: "tanvi", id: 1, time: "", currentMessage: ""),
-    ChatModel(name: "mummyyy", id: 2, time: "", currentMessage: "")
+    ChatModel(
+      name: "Tanvi", id: 1, time: "", currentMessage: "",isGroup: false, 
+      status: "", icon: ""
+      ),
+    ChatModel(name: "chatapp", id: 2, time: "", currentMessage: "", isGroup: false, 
+      status: "", icon: "")
   ];
 
   @override
@@ -26,18 +31,18 @@ class _loginscreenpageState extends State<loginscreenpage> {
           onTap: () {
             // Remove the item at the current index
             setState(() {
-              chatss.removeAt(index);
+               sourcechat =chatss.removeAt(index);
             });
 
             // Navigate to the homescreen after updating the state
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => homescreen(chatsmodel: List.from(chatss)),
+                builder: (context) => homescreen(chatsmodel: List.from(chatss), sourchat: sourcechat,),
               ),
             );
           },
-          child: logincardd(chatmodel: chatss[index]),
+          child: ButtonCard(name: chatss[index].name, icon: Icons.person),
         ),
       ),
     );

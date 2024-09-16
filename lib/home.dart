@@ -6,9 +6,9 @@ import 'package:disapp/pages/chat.dart';
 import 'package:disapp/pages/status.dart';
 
 class homescreen extends StatefulWidget {
-  const homescreen({Key? key, required this.chatsmodel}) : super(key: key);
+  const homescreen({Key? key, required this.chatsmodel, required this.sourchat}) : super(key: key);
   final List<ChatModel> chatsmodel;
-
+  final ChatModel sourchat;
   @override
   State<homescreen> createState() => _homescreenState();
 }
@@ -58,7 +58,10 @@ class _homescreenState extends State<homescreen> with SingleTickerProviderStateM
         controller: _controller,
         children: [
           camerapage(),
-          chatpage(chatmodel: widget.chatsmodel),
+          chatpage(
+            chatmodels: widget.chatsmodel,
+            sourchat: widget.sourchat,
+          ),
           statuspage(),
           callpage(),
         ],

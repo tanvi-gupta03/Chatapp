@@ -1,45 +1,63 @@
+
 import 'package:disapp/model/chatmodel.dart';
 import 'package:disapp/pages/indi.dart';
 import 'package:flutter/material.dart';
 
-class customcardd extends StatefulWidget {
-  const customcardd({Key? key, required this.chatmodel}) : super(key: key);
-  final ChatModel chatmodel;
+class CustomCard extends StatelessWidget {
+  const CustomCard({Key ?key, required this.chatModel, required this.sourchat}) : super(key: key);
+  final ChatModel chatModel;
+  final ChatModel sourchat;
 
-  @override
-  State<customcardd> createState() => _customcarddState();
-}
-
-class _customcarddState extends State<customcardd> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => individualpage(chatmodel: widget.chatmodel, sourcechat: widget.chatmodel)
-        ));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (contex) => IndividualPage(
+                      chatModel: chatModel,
+                      sourchat: sourchat,
+                    )));
       },
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: 25,
-          child: Icon(Icons.person) ,
-        ),
-        title: Text(
-          widget.chatmodel.name,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+      child: Column(
+        children: [
+          ListTile(
+            leading: CircleAvatar(
+              radius: 30,
+              
+              backgroundColor: Colors.blueGrey,
+            ),
+            title: Text(
+              chatModel.name,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            subtitle: Row(
+              children: [
+                Icon(Icons.done_all),
+                SizedBox(
+                  width: 3,
+                ),
+                Text(
+                  chatModel.currentMessage,
+                  style: TextStyle(
+                    fontSize: 13,
+                  ),
+                ),
+              ],
+            ),
+            trailing: Text(chatModel.time),
           ),
-        ),
-        subtitle: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(Icons.done_all) ,
-            Text(widget.chatmodel.currentMessage),
-          ],
-        ),
-        trailing: Text(widget.chatmodel.time),
+          Padding(
+            padding: const EdgeInsets.only(right: 20, left: 80),
+            child: Divider(
+              thickness: 1,
+            ),
+          ),
+        ],
       ),
     );
   }
